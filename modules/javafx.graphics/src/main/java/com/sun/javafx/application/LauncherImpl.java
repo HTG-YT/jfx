@@ -819,6 +819,9 @@ public class LauncherImpl {
                     System.err.println("Exception in Application init method");
                     initError = t;
                     error = true;
+
+                    if (Thread.getDefaultUncaughtExceptionHandler() != null)
+                        Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), t);
                 }
             }
 
@@ -841,6 +844,9 @@ public class LauncherImpl {
                         System.err.println("Exception in Application start method");
                         startError = t;
                         error = true;
+
+                        if (Thread.getDefaultUncaughtExceptionHandler() != null)
+                            Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), t);
                     }
                 });
             }
